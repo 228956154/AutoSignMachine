@@ -74,7 +74,7 @@ jobs:
        
     # 运行 52pojie 签到任务
     - name: Run 52pojie daily task
-      if: ${{ env.ENABLE_52POJIE }}
+      
       env:
         htVD_2132_auth: ${{secrets.pojie_htVD_2132_auth}}
         htVD_2132_saltkey: ${{secrets.pojie_htVD_2132_saltkey}}
