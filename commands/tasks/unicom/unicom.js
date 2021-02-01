@@ -189,6 +189,30 @@ var start = async (params) => {
     ...taskOption,
     startTime: 20 * 3600
   })
+
+  // 首页-牛气-秒杀抢兑
+  await scheduler.regTask('NiujieSpikePrize', async (request) => {
+    await require('./Niujie').spikePrize(request, options)
+  }, {
+    ...taskOption,
+    startTime: 9.6 * 3600,
+    ignoreRelay: true
+  })
+
+  // 首页-牛气-转盘抽奖
+  await scheduler.regTask('NiujieTask', async (request) => {
+    await require('./Niujie').doTask(request, options)
+  }, taskOption)
+
+
+  // 首页-牛气-场馆领牛气
+  await scheduler.regTask('NiujieReceiveCalf', async (request) => {
+    await require('./Niujie').receiveCalf(request, options)
+  }, {
+    isCircle: true,
+    intervalTime: 1 * 3600,
+    ...taskOption
+  })
 }
 module.exports = {
   start
